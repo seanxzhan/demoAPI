@@ -1,3 +1,44 @@
+Goal: create a web app and RESTful API Server with heroku postgres
+
+Download and install heroku cli
+
+Download and istall Node.js
+
+Install Angular CLI: 
+```
+npm install -g @angular/cli
+```
+
+Create new project with angular cli. 
+
+In terminal, cd to a folder where project should live in:
+```
+ng new mean-contactlist-angular2
+```
+Say yes when prompted "add to angular routing?". Style sheet format: CSS. 
+
+Open project folder in vscode. In terminal, create heroku app. 
+```
+heroku login
+heroku create test-api-app695
+```
+
+In src/main.ts, add the following line to the top of the file.
+```
+import './polyfills.ts';
+```
+
+Connect to testexpt's database. 
+```
+heroku addons:attach testexpt::DATABASE --app test-api-app695
+```
+
+Create server.js
+
+
+
+
+
 # Api
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
