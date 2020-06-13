@@ -20,7 +20,7 @@ Say yes when prompted "add to angular routing?". Style sheet format: CSS.
 Open project folder in vscode. In terminal, create heroku app. 
 ```
 heroku login
-heroku create test-api-app695
+heroku create test-api-613
 ```
 
 In src/main.ts, add the following line to the top of the file.
@@ -28,16 +28,21 @@ In src/main.ts, add the following line to the top of the file.
 import './polyfills.ts';
 ```
 
-Connect to testexpt's database. 
+Provision a mongodb database. (Had to put in credit card info, free though)
 ```
 heroku addons:attach testexpt::DATABASE --app test-api-app695
 ```
 
-Create server.js
+Create server.js using ```touch server.js``` and write code.
 
+Install the following libraries:
+```
+npm install mongodb express body-parser --save
+```
 
+In package.js, add ```"start": "node server.js"```
 
-
+Then deploy to heroku.
 
 # Api
 
