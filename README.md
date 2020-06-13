@@ -44,6 +44,12 @@ In package.js, add ```"start": "node server.js"```
 
 Then deploy to heroku.
 
+Test endpoint with curl:
+```
+curl -H "Content-Type: application/json" -d '{"userID":"test01", "sliderVal": "01"}' http://test-api-613.herokuapp.com/api/feedback
+```
+
+
 # Api
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
