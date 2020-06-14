@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 var db;
 
 // connect to the database.
-// NOTE: this is curretly hosted on local server
 mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
   if (err) {
     console.log(err);
@@ -61,9 +60,9 @@ app.post("/api/feedback", function(req, res) {
   });
 });
 
-// endpoint: /api/feedback/update
-// PUT
-app.put("/api/feedback/update", function(req, res) {
+// endpoint: /api/feedback/:id
+// PUT by id
+app.put("/api/feedback/:id", function(req, res) {
   var updateEntry = req.body;
   delete updateEntry._id;
 
@@ -78,7 +77,7 @@ app.put("/api/feedback/update", function(req, res) {
 })
 
 // DELETE
-app.delete("/api/feedback/update", function(req, res) {
+app.delete("/api/feedback/:id", function(req, res) {
   db.collection(FEEDBACK_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
     if (err) {
       handleError(res, err.message, "Failed to delete entry");

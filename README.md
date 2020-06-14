@@ -1,4 +1,4 @@
-Goal: create a web app and RESTful API Server with heroku postgres
+Goal: create a web app and RESTful API Server with mongodb mlab
 
 Download and install heroku cli
 
@@ -47,6 +47,8 @@ Then deploy to heroku.
 Test endpoint with curl:
 ```
 curl -H "Content-Type: application/json" -d '{"userID":"test01", "sliderVal": "01"}' http://test-api-613.herokuapp.com/api/feedback
+curl -H "Content-Type: application/json" -d '{"userID":"test02", "sliderVal": "02"}' http://test-api-613.herokuapp.com/api/feedback
+curl -H "Content-Type: application/json" -d '{"userID":"test03", "sliderVal": "03"}' http://test-api-613.herokuapp.com/api/feedback
 ```
 
 Create a subdirectory in src/app to define an entry class. The point is to keep consistency when we work with data. 
@@ -57,6 +59,14 @@ ng generate class entries/entry
 ```
 
 In the ```entry``` class, enter the desired json format. 
+
+POST:
+
+PUT:
+```
+curl -X PUT -H "Content-Type: application/json" -d '{"userID":"put-test02", "sliderVal": "put-02"}' http://test-api-613.herokuapp.com/api/feedback/5ee675f8afacf3000446c523
+```
+
 
 
 # Api
