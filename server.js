@@ -37,7 +37,7 @@ function handleError(res, reason, message, code) {
 
 // endpoint: /api/feedback
 // GET
-app.get("/api/feedback", function(req, res) {
+app.get("/api", function(req, res) {
   // find all
   db.collection(FEEDBACK_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
