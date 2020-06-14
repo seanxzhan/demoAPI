@@ -49,6 +49,15 @@ Test endpoint with curl:
 curl -H "Content-Type: application/json" -d '{"userID":"test01", "sliderVal": "01"}' http://test-api-613.herokuapp.com/api/feedback
 ```
 
+Create a subdirectory in src/app to define an entry class. The point is to keep consistency when we work with data. 
+```
+mkdir src/app/entries
+# generate an entry class
+ng generate class entries/entry
+```
+
+In the ```entry``` class, enter the desired json format. 
+
 
 # Api
 

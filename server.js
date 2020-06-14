@@ -37,6 +37,7 @@ function handleError(res, reason, message, code) {
 }
 
 // endpoint: /api/feedback
+// GET
 app.get("/api/feedback", function(req, res) {
   // find all
   db.collection(FEEDBACK_COLLECTION).find({}).toArray(function(err, docs) {
@@ -48,6 +49,7 @@ app.get("/api/feedback", function(req, res) {
   });
 });
 
+// POST
 app.post("/api/feedback", function(req, res) {
   var newFeedback = req.body;
   db.collection(FEEDBACK_COLLECTION).insertOne(newFeedback, function(err, doc) {
@@ -58,3 +60,31 @@ app.post("/api/feedback", function(req, res) {
     }
   });
 });
+
+// endpoint: /api/feedback/update
+// PUT
+app.put("/api/feedback/update", function(req, res) {
+  var updateEntry = req.body;
+  delete updateEntry._id;
+
+  db.collection(FEEDBACK_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateEntry, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to update entry");
+    } else {
+      updateEntry._id = req.params.id;
+      res.status(200).json(updateEntry);
+    }
+  })
+})
+
+// DELETE
+app.delete("/api/feedback/update", function(req, res) {
+  db.collection(FEEDBACK_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
+    if (err) {
+      handleError(res, err.message, "Failed to delete entry");
+    } else {
+      // returns id of deleted entry
+      res.status(200).json(req.params.id);
+    }
+  })
+})
