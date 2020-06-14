@@ -30,7 +30,7 @@ import './polyfills.ts';
 
 Provision a mongodb database. (Had to put in credit card info, free though)
 ```
-heroku addons:attach testexpt::DATABASE --app test-api-app695
+heroku addons:create mongolab
 ```
 
 Create server.js using ```touch server.js``` and write code.
@@ -49,6 +49,7 @@ Test endpoint with curl:
 curl -H "Content-Type: application/json" -d '{"userID":"test01", "sliderVal": "01"}' http://test-api-613.herokuapp.com/api/feedback
 curl -H "Content-Type: application/json" -d '{"userID":"test02", "sliderVal": "02"}' http://test-api-613.herokuapp.com/api/feedback
 curl -H "Content-Type: application/json" -d '{"userID":"test03", "sliderVal": "03"}' http://test-api-613.herokuapp.com/api/feedback
+curl -X "POST" "https://test-api-613.herokuapp.com/api/feedback" -i -H 'Content-Type: application/json' -d $'{"userID": "test04", "sliderVal": "04"}'
 ```
 
 Create a subdirectory in src/app to define an entry class. The point is to keep consistency when we work with data. 
