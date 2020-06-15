@@ -68,6 +68,12 @@ PUT:
 curl -i -X "PUT" -H "Content-Type: application/json" -d '{"userID":"put-test02", "sliderVal": "put-02"}' http://test-api-613.herokuapp.com/api/feedback/5ee675f8afacf3000446c523
 ```
 
+PUT DELETE not working. Decided to change structure. 
+
+```
+npm install mongoose
+```
+
 
 
 # Api

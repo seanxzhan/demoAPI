@@ -5,6 +5,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var FEEDBACK_COLLECTION = "feedback";
+Feedback = require('feedback.js')
 
 var app = express();
 app.use(bodyParser.json());
@@ -35,18 +36,31 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
+app.get("/", function(req, res) {
+  res.send("Please use /api/feedback");
+})
+
+app.get("/api/feedback", function(req, rest) {
+  Feedback.getFeedback(function(err, feedback) {
+    if (err) {
+      throw err;
+    }
+    res.json(feedback)
+  })
+})
+
 // endpoint: /api/feedback
 // GET
-app.get("/api", function(req, res) {
-  // find all
-  db.collection(FEEDBACK_COLLECTION).find({}).toArray(function(err, docs) {
-    if (err) {
-      handleError(res, err.message, "Failed to get feedback.");
-    } else {
-      res.status(200).json(docs);
-    }
-  });
-});
+// app.get("/api/feedback", function(req, res) {
+//   // find all
+//   db.collection(FEEDBACK_COLLECTION).find({}).toArray(function(err, docs) {
+//     if (err) {
+//       handleError(res, err.message, "Failed to get feedback.");
+//     } else {
+//       res.status(200).json(docs);
+//     }
+//   });
+// });
 
 // POST
 app.post("/api/feedback", function(req, res) {
@@ -64,7 +78,7 @@ app.post("/api/feedback", function(req, res) {
 // PUT by id
 app.put("/api/feedback/:id", function(req, res) {
   var updateEntry = req.body;
-  // delete updateEntry._id;
+  delete updateEntry._id;
 
   db.collection(FEEDBACK_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateEntry, function(err, doc) {
     if (err) {
