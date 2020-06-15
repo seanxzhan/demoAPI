@@ -64,7 +64,7 @@ app.post("/api/feedback", function(req, res) {
 // PUT by id
 app.put("/api/feedback/:id", function(req, res) {
   var updateEntry = req.body;
-  delete updateEntry._id;
+  // delete updateEntry._id;
 
   db.collection(FEEDBACK_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateEntry, function(err, doc) {
     if (err) {
