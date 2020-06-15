@@ -5,7 +5,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var FEEDBACK_COLLECTION = "feedback";
-Feedback = require('feedback.js')
+// Feedback = require('feedback.js');
 
 var app = express();
 app.use(bodyParser.json());
@@ -40,27 +40,27 @@ app.get("/", function(req, res) {
   res.send("Please use /api/feedback");
 })
 
-app.get("/api/feedback", function(req, rest) {
-  Feedback.getFeedback(function(err, feedback) {
-    if (err) {
-      throw err;
-    }
-    res.json(feedback)
-  })
-})
+// app.get("/api/feedback", function(req, rest) {
+//   Feedback.getFeedback(function(err, feedback) {
+//     if (err) {
+//       throw err;
+//     }
+//     res.json(feedback)
+//   })
+// })
 
 // endpoint: /api/feedback
 // GET
-// app.get("/api/feedback", function(req, res) {
-//   // find all
-//   db.collection(FEEDBACK_COLLECTION).find({}).toArray(function(err, docs) {
-//     if (err) {
-//       handleError(res, err.message, "Failed to get feedback.");
-//     } else {
-//       res.status(200).json(docs);
-//     }
-//   });
-// });
+app.get("/api/feedback", function(req, res) {
+  // find all
+  db.collection(FEEDBACK_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get feedback.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
 
 // POST
 app.post("/api/feedback", function(req, res) {
