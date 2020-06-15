@@ -76,7 +76,7 @@ app.post("/api/feedback", function(req, res) {
 
 // endpoint: /api/feedback/:id
 // PUT by id
-app.put("/api/feedback/:id", function(req, res) {
+app.put("/api/feedback/:_id", function(req, res) {
   var updateEntry = req.body;
   delete updateEntry._id;
 
@@ -91,7 +91,7 @@ app.put("/api/feedback/:id", function(req, res) {
 })
 
 // DELETE
-app.delete("/api/feedback/:id", function(req, res) {
+app.delete("/api/feedback/:_id", function(req, res) {
   db.collection(FEEDBACK_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
     if (err) {
       handleError(res, err.message, "Failed to delete entry");
